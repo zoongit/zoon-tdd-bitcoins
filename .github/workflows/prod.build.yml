@@ -22,6 +22,7 @@ jobs:
           mvn -B clean package
           mkdir staging
           cp target/*.jar staging
+
       - name: Artifact Upload
         uses: actions/upload-artifact@v2
         with:
