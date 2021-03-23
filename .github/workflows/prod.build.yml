@@ -1,6 +1,9 @@
 name: Java CI
 
-on: [push]
+on:
+  push:
+    tags:
+      - '*'
 
 jobs:
   build:
@@ -24,3 +27,11 @@ jobs:
         with:
           name: Package
           path: staging
+
+      - name: Make Release
+          uses: softprops/action-gh-release@v0.1.5
+          with:
+          files:
+            target/*.jar
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
